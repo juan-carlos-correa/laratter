@@ -19,6 +19,18 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
+                <label for="username" class="col-md-4 form-control-label">Username</label>
+                <div class="col-md-6">
+                    <input type="text" require class="form-control" id="username" name="username" value="{{ old('username') }}">
+                    @if ($errors->has('username'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('username') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                 <label for="email" class="col-md-4 form-control-label">E-Mail Address</label>
 
