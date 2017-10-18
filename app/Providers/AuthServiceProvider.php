@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+Use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,6 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('dsm', function (User $user, User $other) {
+            return (
+                $user->isFollowing($other)
+                && $other->isFollowing($user)
+            );
+        });
     }
 }

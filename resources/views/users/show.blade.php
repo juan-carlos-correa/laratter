@@ -9,6 +9,13 @@
   Seguidores <span class="badge badge-default">{{ $user->followers->count() }}</span>
 </a>
 @if(Auth::check())
+  @if(Gate::allows('dsm', $user))
+    <form action="/{{ $user->username}}/dms" method="POST">
+      <input type="text" name="message" class="form-control">
+      <button type="submit" class="btn btn-success">Send Message</button>
+    </form>
+  @endif
+
   @if(Auth::user()->isFollowing($user))
     <form action="/{{ $user->username }}/unfollow" method="POST">
       {{ csrf_field() }}
