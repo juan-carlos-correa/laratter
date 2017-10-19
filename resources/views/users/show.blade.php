@@ -11,6 +11,7 @@
 @if(Auth::check())
   @if(Gate::allows('dsm', $user))
     <form action="/{{ $user->username}}/dms" method="POST">
+      {{ csrf_field() }}
       <input type="text" name="message" class="form-control">
       <button type="submit" class="btn btn-success">Send Message</button>
     </form>
