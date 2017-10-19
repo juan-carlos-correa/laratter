@@ -11,7 +11,6 @@ class UsersController extends Controller
 {
   public function show($username)
   {
-    throw new \Exception('error simulado');
     $user = $this->findByUsername($username);
     return view('users.show', [
       'user' => $user,
