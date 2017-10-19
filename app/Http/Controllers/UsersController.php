@@ -11,6 +11,7 @@ class UsersController extends Controller
 {
   public function show($username)
   {
+    throw new \Exception('error simulado');
     $user = $this->findByUsername($username);
     return view('users.show', [
       'user' => $user,
@@ -85,6 +86,6 @@ class UsersController extends Controller
 
   private function findByUsername($username)
   {
-    return $user = User::where('username', $username)->first();
+    return $user = User::where('username', $username)->firstOrFail();
   }
 }
